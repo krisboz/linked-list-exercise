@@ -108,6 +108,26 @@ class LinkedList {
 
     //(value) -> (value) -> (value) -> null
   }
+
+  insertAt(value, index) {
+    //Inserts the value at provided index
+    //return the node at the index
+    const oldNode = this.at(index);
+    //node already at index becomes next
+    const node = new Node(value, oldNode);
+    const olderNode = this.at(index - 1);
+    //node at index-1 gets the value as next
+    olderNode.next = node;
+    this.size++;
+  }
+
+  removeAt(index) {
+    const nodeToRemove = this.at(index);
+    const previousNode = this.at(index - 1);
+    previousNode.next = nodeToRemove.next;
+    this.size--;
+    //
+  }
 }
 
 let testLista = new LinkedList();
@@ -124,4 +144,8 @@ testLista.pop();
 console.log(testLista.tail);
 console.log(testLista.contains("Pipi12"));
 console.log(testLista.find("Pipi3"));
+console.log(testLista.toString());
+testLista.insertAt("Pipi7", 1);
+console.log(testLista.toString());
+testLista.removeAt(2);
 console.log(testLista.toString());
